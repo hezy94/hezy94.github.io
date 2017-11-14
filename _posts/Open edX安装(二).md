@@ -1,0 +1,69 @@
+---
+title: Open edX安装(二)
+date: 2017-11-14 10:23:00
+categories:
+- OpenedX
+---
+
+# Open edX安装(二)
+
+> 上一篇[Open edX安装(一)](https://hezy94.github.io/openedx/2017/11/06/Open-edX%E5%AE%89%E8%A3%85(%E4%B8%80)是在ubuntu 16.04 LTS上直接安装的Bitnami的安装包．
+> 这篇文章也是在ubuntu 16.04 LTS上安装的Devstack。
+
+
+## 安装实例(Installation Example)
+
+1. **安装virtualBox**
+
+   1. 在<https://www.virtualbox.org/wiki/Linux_Downloads> 下载ubuntu对应版本的deb包(如果是32位就选择i386版本，如果是64位就选AMD64版本，这个跟CPU是intel或者AMD无关)
+   2. 在终端中输入` sudo dpkg -i XXXX.deb`（其中XXXX为包的名字，如果缺少依赖都会提示，修复一下就行了）
+   3. 输入` virtualbox –help` 如果显示帮助文档，就表示安装成功了
+   4. 输入`sudo apt-get insatll vagrant` 安装vitrualBox
+
+2. **安装vagrant—最坑人的地方**
+
+   vagrant包的版本要小心安装，不能太新，更不能太旧。后来看到**Vagrantfile**文件中有一行代码`Vagrant.require_version ">= 1.8.7"` 。所以，我觉得可以先下载文件看看版本的要求，然后再下载。我安装的是1.8.7版本的vagrant。
+
+   1. 下载vagrantfile文件
+   ```
+   mkdir devstack
+   cd devstack
+   curl -L https://raw.githubusercontent.com/edx/configuration/master/vagrant/release/devstack/Vagrantfile>Vagrantfile
+    ```
+   2. vagrant 下载地址是：http://www.vagrantup.com/downloads.html  
+   3. 输入`sudo dpkg -i vagrant_1.5.4_x86_64.deb`安装vagrant
+
+3. **安装NFS网络文件夹共享**
+
+   `sudo apt-get install nfs-common nfs-kernel-server`
+
+4. **执行`vagrant up`**
+
+   这一步中，因为会从网上下载.box的包，所以要一段时间。
+
+5. 启动成功后，就可以**执行`vagrant ssh`连接后台运行的虚拟机**
+
+   首先得在自己的机器中安装并启动ssh服务，可以查看[如何在unbuntu上开启SSH服务](http://blog.csdn.net/md521/article/details/52597398)
+
+6. 连接成功后，**执行`paver devstack lms`将会在虚拟机中开启lms服务，然后可以在主机中访问127.0.0.1:8000浏览页面**
+
+7. 同理的，**执行`paver devstack studio`也可以开启studio服务**
+
+
+
+## **后记(Postscript)**
+
+​	从一开始的安装virtualBox与vagrant的过程中，到最后的启动lms服务，其中会遇到大大小小的各种问题。首先先从它的报错中看看问题出在哪里，有什么关键的信息，然后在搜索引擎上搜索看看。不要看参考资料都是那么少的内容，实际上安装起来，也不是一时半会就能安装调试完成的。
+
+​	安装的方式不限于以上提出的一种，virtualBox与vagrant的安装不一定就要用`sudo dpkg -i ...`可以安装deb包的方式。
+
+vagrant的启动中，也不一定是让它自己下载.box包，你也可以参考下参考资料4中的另外一种方式。
+
+
+
+## 参考资料(Reference)
+
+1. [edx平台搭建(基于Ubuntu搭建edx)](http://www.it165.net/os/html/201408/8979.html)
+2. [如何建立起基于Vagrant的Open EDX的虚拟开发环境(二)](http://blog.csdn.net/lb_zhao/article/details/50666864?locationNum=9&fps=1)
+3. [Installing Open edX Devstack](http://edx.readthedocs.io/projects/edx-installing-configuring-and-running/en/latest/installation/devstack/install_devstack.html)
+4. [Vagrant入门](http://www.cnblogs.com/davenkin/p/vagrant-virtualbox.html)
