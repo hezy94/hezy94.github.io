@@ -5,7 +5,7 @@
 
 # Site
 title: Jiangfan
-subtitle:
+subtitle: Life is short，We need Python、JavaScript、MATLAB…
 description: 
 author: Jiangfan
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
@@ -92,7 +92,7 @@ rss:
 authoricon: heart
 
 # Footer `powered-by` and `theme-info` copyright
-copyright: true
+copyright: false
 
 # ---------------------------------------------------------------
 # SEO Settings
@@ -118,7 +118,7 @@ index_with_subtitle: false
 menu:
   home: /
   categories: /categories/
-  #about: /about/
+  about: /about/
   #archives: /archives/
   #tags: /tags/
   #sitemap: /sitemap.xml
@@ -226,8 +226,7 @@ social_icons:
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: hezy94
-  Twitter: twitter
-  Weibo: hezyuuu
+  Weibo: hezyiii
 
 
 # Sidebar Avatar
