@@ -33,7 +33,7 @@ nightMode: true
 comments:
   default_hidden: true
   disqus: false
-  disqus_url: 'https://cdn-city.livere.com/js/embed.dist.js'
+  disqus_url: 'http://35.194.234.238/other/js/embed.dist.js'
 
   livere: true
   livere_uid: MTAyMC8zNDk0NS8xMTQ4Mg
